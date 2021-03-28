@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatCord App</title>
+</head>
+
+<input hidden id="room-id" value="<%= room._id %>" />
+<input value="<%=user.username%>" hidden id="username" />
+
+<a class="mr-0" href="/dashboard"><i class="fas fa-2x fa-arrow-left"></i></a>
+<div class="container border">
+    <main class="chat-main">
+        <div class="chat-sidebar">
+            <h3>Room Name: <%- room.name %>
+            </h3>
+        </div>
+
+        <div class="chat-messages">
+            <% for(message of messages) { %>
+                <div class="message bg-secondary">
+                    <p>
+                        <%=message.author.name%>
+                    </p>
+                    <span>
+                        <%=message.time%>
+                    </span>
+                    <p>
+                        <%=message.message%>
+                    </p>
+                </div>
+                <%}%>
+        </div>
+</div>
+</main>
+<div class="chat-form-container">
+    <form id="chat-form">
+        <input id="msg" type="text" placeholder="Enter Message..." required autocomplete="off" />
+        <button class="btn btn-primary">Send</button>
+    </form>
+</div>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/main.js"></script>
+
+
+</html>
