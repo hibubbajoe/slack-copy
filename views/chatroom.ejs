@@ -5,13 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ChatCord App</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <input hidden id="room-id" value="<%= room._id %>" />
 <input value="<%=user.username%>" hidden id="username" />
 
 <a class="mr-0" href="/dashboard"><i class="fas fa-2x fa-arrow-left"></i></a>
-<div class="container border">
+<div class="container border chat-window">
     <main class="chat-main">
         <div class="chat-sidebar">
             <h3>Room Name: <%- room.name %>

@@ -25,9 +25,9 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
     function outputMessage(message) {
         const div = document.createElement('div');
-        div.classList.add('message');
-        div.innerHTML = `<p class="meta">${message.author} <span> ${message.time} </span> </p>
-        <p class="text">
+        div.classList.add('message', 'bg-secondary');
+        div.innerHTML = `<p">${message.author} <span> ${message.time} </span> </p>
+        <p>
         ${message.message}
         </p>`;
         document.querySelector('.chat-messages').appendChild(div);
