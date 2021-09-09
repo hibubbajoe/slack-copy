@@ -4,7 +4,7 @@
   "description": "Making a slack clone for a school assignment",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app"
+    "start": "node app.js"
   },
   "author": "Robin Hedlund",
   "license": "ISC",
@@ -25,3 +25,4 @@
     "socket.io": "^4.0.0"
   }
 }
+ 
