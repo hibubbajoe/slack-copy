@@ -23,7 +23,7 @@ require('./config/passport')(passport);
 const db = require('./config/keys').MongoURI;
 
 // CONNECT TO MONGO
-mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
+mongoose.connect(process.env.MONGO_URI || db, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
     .then(() => console.log('MongoDB Connected...'))
     .catch(err => console.log(err));
 
@@ -131,6 +131,5 @@ io.on('connection', (socket) => {
     });
 });
 
-
-const PORT = 3000 || process.env.PORT;
+const PORT = process.env.PORT || 3000;
 server.listen(PORT, console.log(`Server is connected to port ${PORT}`))
