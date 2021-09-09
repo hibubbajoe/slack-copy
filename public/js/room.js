@@ -1,10 +1,12 @@
 document.addEventListener('DOMContentLoaded', (e) => {
 
-    const submitButton = document.getElementById('submit-button');
 
+    //posting room on submit via fetch
+    const submitButton = document.getElementById('submit-button');
     submitButton.addEventListener('click', async e => {
         e.preventDefault();
 
+        // fetching all users from API 
         const response = await fetch('/api/allusers');
         users = await response.json();
 
@@ -25,4 +27,3 @@ document.addEventListener('DOMContentLoaded', (e) => {
             })
     });
 });
-

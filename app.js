@@ -19,10 +19,8 @@ const io = socket(server);
 // PASSPORT CONFIG
 require('./config/passport')(passport);
 
-
 // DB CONFIG
 const db = require('./config/keys').MongoURI;
-const User = require('./models/User');
 
 // CONNECT TO MONGO
 mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
@@ -38,7 +36,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // BODYPARSER
 app.use(express.urlencoded({ extended: false }));
-
 app.use(express.json());
 
 // EXPRESS SESSION
@@ -64,7 +61,6 @@ app.use((req, res, next) => {
     next();
 })
 
-
 // ROUTES
 app.use('/', require('./routes/index'));
 app.use('/api', require('./routes/api'));
@@ -73,18 +69,28 @@ app.use('/users', require('./routes/users'));
 app.use('/profile', require('./routes/profile'));
 app.use('/room', require('./routes/room'));
 
-// SOCKET CONNECTION
-io.on('connection', socket => {
+// SOCKET CONNECTION WHEN ENTERING ROOM
+io.on('connection', (socket) => {
 
-    // ADD USER TO ROOM
+    // catching socket on join from client
     socket.on('join', ({ username, room }) => {
         const user = userJoin(socket.id, username, room);
-        UserModel.updateOne({ username: user.username },
-            (error) => { if (error) { console.log(error); } });
+        UserModel.updateOne(
+            { username: user.username },
+            { isOnline: true },
+            (error) => {
+                if (error) {
+                    console.log(error);
+                }
+            }
+        );
+        // user join on selected room
         socket.join(user.room);
+
+        io.to(user.room).emit('roomUsers');
     });
 
-    // ADD MESSAGE WITH META DATA AND SENDS TO ALL USERS IN ROOM
+    // catching message from client 
     socket.on('chatMessage', (message) => {
         const user = getCurrentUser(socket.id);
         const msg = {
@@ -93,18 +99,18 @@ io.on('connection', socket => {
             author: user.username,
         };
 
+        // emitting message to client 
         io.to(user.room).emit('message', msg);
 
-
-        // PUSH MESSAGE TO DB 
+        // pushing message to DB 
         UserModel.findOne({ username: user.username }).exec(
             (error, currentUser) => {
                 if (error) {
                     throw error;
                 }
-                // GIVE AUTHOR ID TO ATTACH TO MESSAGE
                 msg.author = currentUser._id;
                 const newMessage = new MessageModel(msg);
+
                 RoomModel.findOneAndUpdate(
                     { _id: user.room },
                     { $push: { messages: newMessage._id } },
@@ -114,7 +120,7 @@ io.on('connection', socket => {
                         }
                     }
                 );
-                // SAVE TO DB
+                // saving new message to DB
                 newMessage.save((error, result) => {
                     if (error) {
                         return handleError(error);
@@ -123,7 +129,6 @@ io.on('connection', socket => {
             }
         );
     });
-
 });
 
 

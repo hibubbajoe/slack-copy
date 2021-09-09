@@ -23,7 +23,7 @@
             <% for(message of messages) { %>
                 <div class="message bg-secondary">
                     <p>
-                        <%=message.author.name%>
+                        <%=message.author.username%>
                     </p>
                     <span>
                         <%=message.time%>
@@ -45,6 +45,5 @@
 </div>
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/main.js"></script>
-
 
 </html>

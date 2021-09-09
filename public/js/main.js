@@ -5,24 +5,28 @@ document.addEventListener('DOMContentLoaded', (e) => {
     const room = document.getElementById('room-id').value;
     const username = document.getElementById('username').value;
 
+
     function scrollBottom() {
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
+    // emitting user and room to socket when joining
     socket.emit('join', { username, room });
 
+    // catching message from server
     socket.on('message', message => {
         outputMessage(message);
         scrollBottom();
     });
 
-    // message submit
+    // sending message input to server
     chatForm.addEventListener('submit', e => {
         e.preventDefault();
         const message = e.target.elements.msg.value;
         socket.emit('chatMessage', message);
     })
 
+    // outputs formatted message
     function outputMessage(message) {
         const div = document.createElement('div');
         div.classList.add('message', 'bg-secondary');
@@ -33,10 +37,5 @@ document.addEventListener('DOMContentLoaded', (e) => {
         document.querySelector('.chat-messages').appendChild(div);
     }
 
-
-
-
-
     scrollBottom();
-
 });
