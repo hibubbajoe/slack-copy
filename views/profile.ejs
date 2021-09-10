@@ -1,39 +1,37 @@
-<div class="row mt-5">
-    <div class="col-md-6 m-auto">
-        <div class="card card-body">
+<div class="col-md-6 m-auto">
+    <div class="card card-body shadow">
 
-            <div>
-                <a class="mr-0" href="/dashboard"><i class="fas fa-2x fa-arrow-left"></i></a>
-                <h1 class="text-center mb-4">
-                    <i></i> Update profile
-                </h1>
-                <p class="">Click change to profile picture</p>
-                <a href="/profile/profilepic" class=""><img src="<%= user.profilepic %>" alt="profilepic"
-                        class="w-25 rounded-circle m-3"></a>
-            </div>
-            <%- include('./partials/messages') %>
-                <form action="/profile/update" method="POST">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="name" id="name" name="name" class="form-control" placeholder="Enter Name"
-                            value="<%= typeof user.name != 'undefined' ? user.name : '' %>" />
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" class="form-control" placeholder="Enter Email"
-                            value="<%= typeof user.email != 'undefined' ? user.email : '' %>" />
-                    </div>
-                    <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="username" id="username" name="username" class="form-control"
-                            placeholder="Enter Username"
-                            value="<%= typeof user.username != 'undefined' ? user.username : '' %>" />
-                    </div>
-
-                    <button type="submit" class="btn btn-primary btn-block">
-                        Save Changes
-                    </button>
-                </form>
+        <div>
+            <a class="mr-0" href="/dashboard"><i class="fas fa-2x fa-arrow-left"></i></a>
+            <h1 class="text-center mb-4">
+                <i></i> Update profile
+            </h1>
+            <p class="">Click photo to change profile picture</p>
+            <a href="/profile/profilepic" class=""><img src="<%= user.profilepic %>" alt="profilepic"
+                    class="w-25 rounded-circle m-3"></a>
         </div>
+        <%- include('./partials/messages') %>
+            <form action="/profile/update" method="POST">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="name" id="name" name="name" class="form-control" placeholder="Enter Name"
+                        value="<%= typeof user.name != 'undefined' ? user.name : '' %>" />
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Enter Email"
+                        value="<%= typeof user.email != 'undefined' ? user.email : '' %>" />
+                </div>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="username" id="username" name="username" class="form-control"
+                        placeholder="Enter Username"
+                        value="<%= typeof user.username != 'undefined' ? user.username : '' %>" />
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">
+                    Save Changes
+                </button>
+            </form>
     </div>
 </div>

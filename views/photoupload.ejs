@@ -1,8 +1,10 @@
-<div class="container col-6 d-flex align-items-center mb-5">
+<div class="container col-6 d-flex align-items-center justify-content-center m-auto border shadow h-25">
     <%= typeof msg==='undefined' ? '' : msg %>
         <div class="m-5">
             <form action="/profile/profilepic/update" method="POST" enctype="multipart/form-data">
-                <label for="formFileLg" class="form-label nt-5 mb-5">Upload a profilepic</label>
+                <label for="formFileLg" class="form-label nt-5 mb-5">
+                    <h2>Upload a profilepic</h2>
+                </label>
                 <input class="row ml-2" id="formFileLg" type="file" name="profilePic" />
                 <input type="submit" value="Submit Pic" class="btn btn-primary btn-lg btn-block mt-2 rounded-pill" />
             </form>

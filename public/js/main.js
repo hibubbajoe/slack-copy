@@ -5,9 +5,8 @@ document.addEventListener('DOMContentLoaded', (e) => {
     const room = document.getElementById('room-id').value;
     const username = document.getElementById('username').value;
 
-
     function scrollBottom() {
-        chatMessages.scrollTop = chatMessages.scrollHeight;
+        chatMessages.scrollTop = chatMessages.scrollHeight - chatMessages.clientHeight;
     }
 
     // emitting user and room to socket when joining
@@ -26,11 +25,12 @@ document.addEventListener('DOMContentLoaded', (e) => {
         socket.emit('chatMessage', message);
     })
 
+
     // outputs formatted message
     function outputMessage(message) {
         const div = document.createElement('div');
-        div.classList.add('message', 'bg-secondary');
-        div.innerHTML = `<p">${message.author} <span> ${message.time} </span> </p>
+        div.classList.add('my-message');
+        div.innerHTML = `<p">${message.author} ${message.time} </span> </p>
         <p>
         ${message.message}
         </p>`;

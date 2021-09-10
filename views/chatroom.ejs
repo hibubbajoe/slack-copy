@@ -1,49 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChatCord App</title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-
 <input hidden id="room-id" value="<%= room._id %>" />
 <input value="<%=user.username%>" hidden id="username" />
 
-<a class="mr-0" href="/dashboard"><i class="fas fa-2x fa-arrow-left"></i></a>
-<div class="container border chat-window">
-    <main class="chat-main">
-        <div class="chat-sidebar">
-            <h3>Room Name: <%- room.name %>
-            </h3>
-        </div>
-
+<div class="container chat-window">
+    <a class="mr-0" href="/dashboard"><i class="fas fa-2x fa-arrow-left mt-3"></i></a>
+    <!-- <main class="chat-main"> -->
+    <div class="chat-sidebar text-center">
+        <h3>Room Name: <%- room.name %>
+        </h3>
+    </div>
+    <div class="container h-75 w-75 card mt-5 shadow p-3 d-flex flex-column">
         <div class="chat-messages">
             <% for(message of messages) { %>
-                <div class="message bg-secondary">
+                <div class="<%= message.author.username === user.username ? 'my-message' : 'your-message'%>">
                     <p>
-                        <%=message.author.username%>
+                        <%= message.author.username + " " + moment(message.time).format("YYYY MMMM D, HH:mm") %>
                     </p>
-                    <span>
-                        <%=message.time%>
-                    </span>
                     <p>
                         <%=message.message%>
                     </p>
                 </div>
                 <%}%>
         </div>
+        <div class="chat-form-container w-100 mt-auto">
+            <form id="chat-form">
+                <input id="msg" type="text" class="w-100 bg-light rounded-pill border-light"
+                    placeholder="Enter Message..." required autocomplete="off" />
+                <!-- <button class="btn btn-primary">Send</button> -->
+            </form>
+        </div>
+    </div>
+    <!-- </main> -->
 </div>
-</main>
-<div class="chat-form-container">
-    <form id="chat-form">
-        <input id="msg" type="text" placeholder="Enter Message..." required autocomplete="off" />
-        <button class="btn btn-primary">Send</button>
-    </form>
 </div>
-</div>
-<script src="/socket.io/socket.io.js"></script>
-<script src="/js/main.js"></script>
-
-</html>

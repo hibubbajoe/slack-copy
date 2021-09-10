@@ -1,20 +1,24 @@
-<div class="container m-2">
-
-    <p class="text-center lead m-3">Welcome <%-user.name%>
+<div class="container">
+    <p class="text-center lead mt-5">
+        Welcome <%-user.username%>
     </p>
-    <a class="mb-5" href="/room/roomform">Create a new Room +</a>
-    <div class="card col-12 shadow h-100 mt-2 p-5">
-        <%if(rooms){ %>
-            <%for(room of rooms) {%>
-                <div class="w-25 col-3">
-                    <a href="/chatroom/<%= room._id %>" class="list-group-item list-group-item-action"
-                        aria-current="true">
-                        <%= room.name %>
-                    </a>
-                </div>
-                <% } %>
+    <div class="h-75 m-auto">
+
+
+        <a class="mb-5" href="/room/roomform">Create a new Room +</a>
+        <div class="card col-12 shadow h-100 p-5 dashboard-container">
+            <%if(rooms){ %>
+                <%for(room of rooms) {%>
+                    <div class="w-25 m-2 room-card">
+                        <a href="/chatroom/<%= room._id %>" class="list-group-item list-group-item-action "
+                            aria-current="true">
+                            <%= room.name %>
+                        </a>
+                    </div>
+                    <% } %>
+        </div>
+        <%}%>
+            <a href="/users/logout" class="btn btn-secondary mt-3">Logout</a>
+            <a href="/profile" class="btn btn-secondary mt-3">Profile</a>
     </div>
-    <%}%>
-        <a href="/users/logout" class="btn btn-secondary mt-3">Logout</a>
-        <a href="/profile" class="btn btn-secondary mt-3">Profile</a>
 </div>

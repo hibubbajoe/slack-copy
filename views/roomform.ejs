@@ -1,18 +1,24 @@
 <%- include ('./partials/messages')%>
+    <div class="m-auto container">
+        <div class="container col-6 card card-body shadow h-50">
+            <form>
+                <fieldset>
+                    <legend>Add Room</legend>
+                    <div class="form-group">
+                        <label for="name">Room Name</label>
+                        <input autocomplete="off" name="name" class="form-control" id="room-name"
+                            placeholder="What do you want to name the room?" required />
 
-    <div class="container col-3 position-absolute top-50 start-50 translate-middle">
-        <form>
-            <fieldset>
-                <legend>Add Room</legend>
-                <div class="form-group">
-                    <label for="name">Room Name</label>
-                    <input autocomplete="off" name="name" class="form-control" id="room-name"
-                        placeholder="Enter room name" required />
-
-                    <div class="form-group h-5 overflow-auto" id="user-list"></div>
-                </div>
-                <button type="submit" id="submit-button" class="btn btn-primary mt-2">Add room</button>
-            </fieldset>
-        </form>
+                        <div class="form-group h-5 overflow-auto" id="user-list"></div>
+                    </div>
+                    <div>
+                        <button type="submit" id="submit-button"
+                            class="btn btn-primary mt-2 w-25 btn-block rounded-pill">Add
+                            room
+                        </button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
     </div>
     <script src="/js/room.js"></script>

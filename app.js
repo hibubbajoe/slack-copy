@@ -31,6 +31,7 @@ mongoose.connect(process.env.MONGO_URI || db, { useNewUrlParser: true, useUnifie
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
 
+app.locals.moment = require("moment");
 // SET STATIC FOLDER
 app.use(express.static(path.join(__dirname, 'public')));
 
