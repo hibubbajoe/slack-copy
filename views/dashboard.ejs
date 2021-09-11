@@ -9,7 +9,7 @@
         <div class="card col-12 shadow h-100 p-5 dashboard-container">
             <%if(rooms){ %>
                 <%for(room of rooms) {%>
-                    <div class="w-25 m-2 room-card">
+                    <div class="m-2 room-card chatroom-container">
                         <a href="/chatroom/<%= room._id %>" class="list-group-item list-group-item-action "
                             aria-current="true">
                             <%= room.name %>

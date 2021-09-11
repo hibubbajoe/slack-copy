@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
     const socket = io();
     const chatForm = document.getElementById('chat-form')
     const chatMessages = document.querySelector('.chat-messages')
+    const inputField = document.getElementById('msg');
     const room = document.getElementById('room-id').value;
     const username = document.getElementById('username').value;
 
@@ -16,6 +17,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
     socket.on('message', message => {
         outputMessage(message);
         scrollBottom();
+        inputField.value = "";
     });
 
     // sending message input to server

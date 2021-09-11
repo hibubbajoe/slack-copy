@@ -5,6 +5,9 @@ body {
     height: 100vh;
 }
 
+.chat-messages-container {
+    width: 70%;
+}
 
 .chat-container,
 .room-card,
@@ -20,6 +23,11 @@ body {
     height: 2rem;
 }
 
+
+.chatroom-container {
+    width: 25%;
+}
+
 /* .room-card {
     border-radius: 5px;
 }
@@ -27,6 +35,10 @@ body {
 .dashboard-container {
     border-radius: 5px;
 } */
+
+.btn-mobile {
+    visibility: hidden;
+}
 
 .my-message {
     border-radius: 25px;
@@ -45,4 +57,26 @@ body {
     margin: 5px;
     padding: 10px 20px;
     width: fit-content;
+}
+
+@media (max-device-width: 600px) {
+
+    .btn-mobile {
+        visibility: visible;
+        border-radius: 50%;
+    }
+
+    .chatroom-container {
+        width: 100%;
+    }
+
+    .chat-messages-container {
+        width: 100%;
+        border: none;
+    }
+
+    .photo-upload {
+        border: none;
+    }
+
 }
