@@ -28,13 +28,10 @@ body {
     width: 25%;
 }
 
-/* .room-card {
-    border-radius: 5px;
+.welcome-img {
+    height: 300px;
+    object-fit: contain;
 }
-
-.dashboard-container {
-    border-radius: 5px;
-} */
 
 .btn-mobile {
     visibility: hidden;
@@ -60,6 +57,8 @@ body {
 }
 
 @media (max-device-width: 600px) {
+
+
 
     .btn-mobile {
         visibility: visible;
